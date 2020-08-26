@@ -131,13 +131,42 @@
     hasColConflictAt: function (colIndex) {
       // colIndex = same index applied to all row arrays
       // go down every column and see if there is more than one piece in that column
+      var numRows = this.get('n');
       // var count = 0
-      // iterate over this.rows()
+      var count = 0;
+      // iterate over this.rows(), looking at colIndex for each
+      for (var i = 0; i < numRows; i++) {
+        // increment count by value at colIndex
+        var row = this.rows()[i];
+        count += row[colIndex];
+        // if count > 1,
+        if (count > 1) {
+        // return true
+          return true;
+        }
+      }
       return false;
     },
 
     // test if any columns on this board contain conflicts
     hasAnyColConflicts: function () {
+      // checking for column conflicts on all columns
+      // declare numCols
+      // iterate over every column
+      // call hasColConflictAt on each column index
+      // if hasColConflictAt evaluates to true
+      // return true
+
+      // in every other case, return false
+
+      var numCols = this.get('n');
+
+      for (var i = 0; i < numCols; i++) {
+        if (this.hasColConflictAt(i)) {
+          return true;
+        }
+      }
+
       return false; // fixme
     },
 
@@ -148,6 +177,12 @@
     //
     // test if a specific major diagonal on this board contains a conflict
     hasMajorDiagonalConflictAt: function (majorDiagonalColumnIndexAtFirstRow) {
+      // row + 1, col + 1
+      // row - 1, col - 1
+      // declare dimension set equal to n
+      // declare count set equal to 0
+      //
+
       return false; // fixme
     },
 
