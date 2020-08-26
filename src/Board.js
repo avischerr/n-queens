@@ -79,15 +79,6 @@
     //
     // test if a specific row on this board contains a conflict
     hasRowConflictAt: function (rowIndex) {
-      // var count = 0;
-      // var row = this.rows()[rowIndex]; // simple way
-      // for (var i = 0; i < row.length; i++) {
-      //   var piece = row[i];
-      //   count += piece;
-      //   if (count > 1) { return true };
-      // }
-      // return false;
-
       // determine whether a specific row has more than one piece on it, causing a conflict
       // declare counter
       var count = 0;
@@ -110,16 +101,39 @@
 
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function () {
-      return false; // fixme
+      // call hasRowConflictAt on every row
+      var numRows = this.get('n');
+
+      // use boolean flag set to false for now
+      // iterate over numRows
+      // if hasRowConflict(i), boolean flag reassigned to true
+      // return boolean flag
+
+      for (var i = 0; i < numRows; i++) {
+        if (this.hasRowConflictAt(i)) {
+          return true;
+        }
+      }
+      return false;
     },
 
+    // displayBoard([
+    //   [0, 1, 0, 0], -> 0
+    //   [0, 0, 0, 1], -> 1
+    //   [1, 0, 0, 0], -> 2
+    //   [0, 0, 1, 0]  -> 3
+    // ]);
 
     // COLUMNS - run from top to bottom
     // --------------------------------------------------------------
     //
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function (colIndex) {
-      return false; // fixme
+      // colIndex = same index applied to all row arrays
+      // go down every column and see if there is more than one piece in that column
+      // var count = 0
+      // iterate over this.rows()
+      return false;
     },
 
     // test if any columns on this board contain conflicts
