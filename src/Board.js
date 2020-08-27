@@ -176,19 +176,52 @@
     // --------------------------------------------------------------
     //
     // test if a specific major diagonal on this board contains a conflict
-    hasMajorDiagonalConflictAt: function (majorDiagonalColumnIndexAtFirstRow) {
-      // row + 1, col + 1
-      // row - 1, col - 1
-      // declare dimension set equal to n
-      // declare count set equal to 0
-      //
 
-      return false; // fixme
+    // Major Diagonals:
+    // row + 1, col + 1 (within n)
+    // row - 1, col - 1 (within n)
+
+    hasMajorDiagonalConflictAt: function (majorDiagonalColumnIndexAtFirstRow) {
+      // majorDiagonalColumnIndexAtFirstRow = colIndex - rowIndex (maybe?)
+
+      // declare dimension set equal to n
+      var dimension = this.get('n');
+      // declare count set equal to 0
+      var count = 0;
+
+      // for top three diagonals
+      if (majorDiagonalColumnIndexAtFirstRow >= 0) {
+        // row + 1, col + 1 to set diagonal path, iterate
+        for (var row = 0, col = majorDiagonalColumnIndexAtFirstRow; row < dimension && col < dimension; row++, col++) {
+          count += this.rows()[row][col];
+          if (count > 1) {
+            // if count > 1, return true
+            return true;
+          }
+        }
+      // for bottom two diagonals
+      } else {
+        for (var col = 0, row = Math.abs(majorDiagonalColumnIndexAtFirstRow); row < dimension && col < dimension; row++, col++) {
+          count += this.rows()[row][col];
+          if (count > 1) {
+            // if count > 1, return true
+            return true;
+          }
+        }
+      }
+
+      return false;
     },
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function () {
-      return false; // fixme
+      // declare dimension, equal to n (get n the same way we have before)
+      // run a for loop, iterating through every number from 2 - n to n - 2
+      // if this.hasMajorDiagonalConflictAt(iteration)
+      // return true
+
+      // otherwise,
+      return false;
     },
 
 
@@ -197,6 +230,11 @@
     // --------------------------------------------------------------
     //
     // test if a specific minor diagonal on this board contains a conflict
+
+    // Minor Diagonals:
+    // row + 1, col - 1 (within n)
+    // row - 1, col + 1 (within n)
+
     hasMinorDiagonalConflictAt: function (minorDiagonalColumnIndexAtFirstRow) {
       return false; // fixme
     },
