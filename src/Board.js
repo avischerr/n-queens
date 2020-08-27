@@ -215,6 +215,12 @@
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function () {
+      var dimension = this.get('n');
+      for (var i = 2 - dimension; i < dimension - 2; i++) {
+        if (this.hasMajorDiagonalConflictAt(i)) {
+          return true;
+        }
+      }
       // declare dimension, equal to n (get n the same way we have before)
       // run a for loop, iterating through every number from 2 - n to n - 2
       // if this.hasMajorDiagonalConflictAt(iteration)
@@ -236,12 +242,44 @@
     // row - 1, col + 1 (within n)
 
     hasMinorDiagonalConflictAt: function (minorDiagonalColumnIndexAtFirstRow) {
-      return false; // fixme
+      var dimension = this.get('n');
+      // declare count set equal to 0
+      var count = 0;
+
+      // for top three diagonals
+      if (minorDiagonalColumnIndexAtFirstRow < dimension) {
+        // row + 1, col + 1 to set diagonal path, iterate
+        for (var row = 0, col = minorDiagonalColumnIndexAtFirstRow; row < dimension && col < dimension; row++, col--) {
+          count += this.rows()[row][col];
+          if (count > 1) {
+            // if count > 1, return true
+            return true;
+          }
+        }
+      // for bottom two diagonals
+      } else {
+        for (var row = minorDiagonalColumnIndexAtFirstRow - dimension + 1, col = dimension - 1; row < dimension && col < dimension; row++, col--) {
+          count += this.rows()[row][col];
+          if (count > 1) {
+            // if count > 1, return true
+            return true;
+          }
+        }
+      }
+      return false;
     },
 
     // test if any minor diagonals on this board contain conflicts
     hasAnyMinorDiagonalConflicts: function () {
-      return false; // fixme
+      // get n
+      var dimension = this.get('n');
+      for (var i = 0; i < 2 * (dimension - 1); i++) {
+        if (this.hasMinorDiagonalConflictAt(i)) {
+          return true;
+        }
+      }
+
+      return false;
     }
 
     /*--------------------  End of Helper Functions  ---------------------*/
