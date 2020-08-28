@@ -13,10 +13,40 @@
 
 // return a matrix (an array of arrays) representing a single nxn chessboard, with n rooks placed such that none of them can attack each other
 
+/*
+root (empty board)
+iterates across row 0 (n iterations)
+iterates across row 1
+....
+
+board = {
+  {
+
+        }
+        (1, 2):
+        (2, 2):
+        (3, 2):
+      }
+      (1, 1):
+      (2, 1):
+      (3, 1):
+    }
+    (1, 0):
+    (2, 0):
+    (3, 0):
+  }
+}
+*/
+
 
 
 window.findNRooksSolution = function(n) {
   var solution = undefined; //fixme
+  var board = new Board({n: n});
+
+  // iterate over decision tree recursively
+  // every time you iterate, you're creating a new board (calling Board constructor)
+  // if (!conflicts), then toggle 0 to 1
 
   console.log('Single solution for ' + n + ' rooks:', JSON.stringify(solution));
   return solution;
